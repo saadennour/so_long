@@ -1,0 +1,25 @@
+- movements
+- walls
+- #image on image
+- ESC
+- red cross
+- MAP
+- size of window effect
+
+
+
+
+MAP PLAN :
+
+- check the first and last line that it had only 1
+- check every line and make it begins and ends with 1
+- check that exist one P and at least one E and at least one C
+- check that there isnt any differnet charc
+- check that the map is rectanglar
+
+PARSING PLAN :
+
+- choose the images for the background
+- choose a hero, collectible and an exit
+- get the images done (size. png to xml, remove background)
+- 

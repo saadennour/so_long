@@ -6,7 +6,7 @@
 /*   By: sfarhan <sfarhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:11:51 by sfarhan           #+#    #+#             */
-/*   Updated: 2022/02/09 20:58:24 by sfarhan          ###   ########.fr       */
+/*   Updated: 2022/02/23 01:46:42 by sfarhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,17 +103,3 @@ char	*get_next_line(int fd, int BUFFER_SIZE)
 	s = ft_after(s);
 	return (r);
 }
-
-#include <stdio.h>
-#include <fcntl.h>
-// int main()
-// {
-// 	int fd;
-// 	char *s = NULL;
-// 	fd = open ("text.txt", O_RDWR | O_CREAT);
-// 	while ((s = get_next_line(fd, 13)))
-// 	{
-// 		printf ("%s", s);
-// 		free (s);
-// 	}
-// }

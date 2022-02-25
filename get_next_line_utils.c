@@ -6,7 +6,7 @@
 /*   By: sfarhan <sfarhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 18:37:27 by sfarhan           #+#    #+#             */
-/*   Updated: 2021/12/07 02:55:45 by sfarhan          ###   ########.fr       */
+/*   Updated: 2022/02/23 02:34:51 by sfarhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,25 @@ char	*ft_strdup(char *src)
 		i--;
 	}
 	p[j] = '\0';
-	free (p);
 	return (p);
+}
+
+int	ft_strncmp(const char	*first, const char	*second, size_t	length)
+{
+	size_t			i;
+	unsigned char	*s;
+	unsigned char	*f;
+
+	if (length == 0)
+	{
+		return (0);
+	}
+	s = (unsigned char *)second;
+	f = (unsigned char *)first;
+	i = 0;
+	while ((f[i] != '\0' || s[i] != '\0') && (f[i] == s[i]) && (i < length - 1))
+	{
+		i++;
+	}
+	return (f[i] - s[i]);
 }

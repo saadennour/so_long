@@ -1,153 +1,126 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include  <mlx.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sfarhan <sfarhan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/22 21:00:47 by sfarhan           #+#    #+#             */
+/*   Updated: 2022/02/25 22:00:54 by sfarhan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "so_long.h"
+#include "get_next_line.h"
+#include <fcntl.h>
 
-#define WHITE   0x00FFFFFF
-#define RED     0x00FF0000
-#define GREEN   0x0000FF00
-#define BLUE    0x000000FF
-#define BLACK   0x00000000
-#define YELLOW  0x00FFFF00
-#define PURPLE  0x00FF00FF
-
-typedef struct s_data {
-    void *img;
-    char *addr;
-    int bpp;
-    int line;
-    int endian;
-}              t_data;
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+static int	buno(char *s)
 {
-	char	*dst;
+	int	i;
+	int	count;
 
-	dst = data->addr + (y * data->line + x * (data->bpp / 8));
-	*(unsigned int*)dst = color;
+	i = 0;
+	count = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == '1')
+			count++;
+		else
+			return (0);
+		i++;
+	}
+	return (count);
 }
 
-void    square (t_data img, int i, int j, int max)
+char	**size(int fd, int lenght)
 {
-    int x = 0;
-    int y = 0;
+	int		i;
+	char	**s;
+	char	*ob;
 
-    while (x <= max)
-    {
-        my_mlx_pixel_put(&img, i+x, j, RED);
-        x++;
-    }
-    while (y <= max)
-    {
-        my_mlx_pixel_put(&img, i, j+y, RED);
-        y++;
-    }
-    x = 0;
-    while (x <= max)
-    {
-        my_mlx_pixel_put(&img, i+x, j+y, RED);
-        x++;
-    }
-    y = 0;
-    while (y <= max)
-    {
-        my_mlx_pixel_put(&img, i+x, j+y, RED);
-        y++;
-    }
+	i = 0;
+	ob = get_next_line(fd, 13);
+	if (ob == NULL)
+	{
+		ft_putstr("Error\n");
+		exit (0);
+	}
+	lenght = ft_strlen (ob);
+	s = malloc(sizeof(char *) * lenght);
+	s[0] = ob;
+	while (s[i])
+	{
+		s[i][lenght] = '\0';
+		i++;
+		s[i] = get_next_line(fd, 13);
+	}
+	s[i] = 0;
+	return (s);
 }
 
-void    triangle (t_data img, int i, int j, int max)
+int	check_map(char **s, int line, int lenght)
 {
-    int x = 0;
-    int y = 0;
+	int	i;
+	int	p;
+	int	c;
+	int	e;
 
-    while (x <= max)
-    {
-        my_mlx_pixel_put(&img, i+x, j+x, WHITE);
-        x++;
-    }
-    x = 0;
-    while (y <= max)
-    {
-        my_mlx_pixel_put(&img, i-y, j+y, WHITE);
-        y++;
-    }
-    while (x <= 2*max)
-    {
-        my_mlx_pixel_put(&img, i+y-x, j+y, WHITE);
-        x++;
-    }
+	i = 0;
+	p = 0;
+	c = 0;
+	e = 0;
+	lenght = uno(s[0]);
+	while (++i < line - 1 && lenght != 0)
+	{
+		if (segundo(s[i], lenght) == 0)
+			return (0);
+		p += player(s[i]);
+		c += collectible(s[i]);
+		e += out(s[i]);
+	}
+	lenght = buno(s[line - 1]);
+	if (lenght == 0 || strange(s) == 0)
+		return (0);
+	if (p == 1 && c >= 1 && e >= 1)
+		return (1);
+	return (0);
 }
 
-int main()
+int	init_vars(t_data *data, char *mapname)
 {
-    void    *mlx_ptr;
-    void    *window;
-    t_data    img;
+	int	fd;
 
-    int i = 1;
-    int j = 1;
+	fd = open(mapname, O_RDWR);
+	data->var.lenght = 0;
+	data->var.line = 0;
+	data->var.x = 80;
+	data->var.y = 80;
+	data->var.map = size(fd, data->var.lenght);
+	data->var.line = ft_lines(data->var.map);
+	data->var.lenght = ft_lenght(data->var.map);
+	if (check_map(data->var.map, data->var.line, data->var.lenght) == 0)
+	{
+		ft_putstr("Error\n");
+		return (0);
+	}
+	gold_hunt(data);
+	return (1);
+}
 
-    mlx_ptr = mlx_init();
-    window = mlx_new_window (mlx_ptr, 1920, 1080, "test");
-    img.img = mlx_new_image (mlx_ptr, 1920, 1080);
-    img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line, &img.endian);
-    // while (i < 1920)
-    // {
-    //     j = 1;
-    //     while (j < 1080)
-    //     {
-    //         my_mlx_pixel_put (&img, i, j, RED);
-    //         j++;
-    //     }
-    //     i++;
-    // }
-    // i = 0;
-    // while (i < 1920)
-    // {
-    //     j = 100;
-    //     while (j < 200)
-    //     {
-    //         my_mlx_pixel_put (&img, i, j, GREEN);
-    //         j++;
-    //     }
-    //     i++;
-    // }
-    // i = 0;
-    // while (i < 1920)
-    // {
-    //     j = 200;
-    //     while (j < 300)
-    //     {
-    //         my_mlx_pixel_put (&img, i, j, BLUE);
-    //         j++;
-    //     }
-    //     i++;
-    // }
-    // i = 0;
-    // while (i < 1920)
-    // {
-    //     j = 300;
-    //     while (j < 400)
-    //     {
-    //         my_mlx_pixel_put (&img, i, j, PURPLE);
-    //         j++;
-    //     }
-    //     i++;
-    // }
-    // i = 0;
-    // while (i < 1920)
-    // {
-    //     j = 400;
-    //     while (j < 500)
-    //     {
-    //         my_mlx_pixel_put (&img, i, j, YELLOW);
-    //         j++;
-    //     }
-    //     i++;
-    //}
-    square (img, 50, 50, 500);
-    // triangle (img, 720, 400, 500);
-    mlx_put_image_to_window (mlx_ptr, window, img.img, 0, 0);
-    mlx_loop(mlx_ptr);
+int	main(int ac, char **av)
+{
+	t_data	data;
+
+	if (ac != 2 || ft_ber(av[1]) != 0)
+	{
+		ft_putstr("Error\n");
+		return (0);
+	}
+	if (init_vars(&data, av[1]) == 0)
+		return (0);
+	draw_map(&data);
+	mlx_hook(data.var.win, 2, 1L << 0, key_hook, &data);
+	mlx_hook(data.var.win, 17, 1L << 0, shut, &data);
+	//system ("Leaks a.out");
+	mlx_loop(data.var.mlx);
 }

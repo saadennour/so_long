@@ -6,16 +6,32 @@
 /*   By: sfarhan <sfarhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 21:00:02 by sfarhan           #+#    #+#             */
-/*   Updated: 2022/02/27 00:20:35 by sfarhan          ###   ########.fr       */
+/*   Updated: 2022/02/24 00:01:54 by sfarhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <fcntl.h>
+#include <string.h>
 
 int	shut(t_data *data)
 {
 	mlx_destroy_window (data->var.mlx, data->var.win);
 	exit(0);
+}
+
+void	string(t_data *data)
+{
+	static int	g_f;
+	char		*str;
+	int			i;
+
+	i = 0;
+	i = g_f;
+	str = ft_itoa (g_f);
+	g_f++;
+	mlx_string_put (data->var.mlx, data->var.win, 10, 10, BLACK, str);
+	free (str);
 }
 
 int	complete(t_data *data, int i, int j)
@@ -33,6 +49,9 @@ int	complete(t_data *data, int i, int j)
 		mlx_put_image_to_window (data->var.mlx, data->var.win,
 			data->relative_boat, j * 80, i * 80);
 	}
+	else if (data->var.map[i][j] == 'H')
+		mlx_put_image_to_window (data->var.mlx, data->var.win,
+			data->relative_monster, j * 80, i * 80);
 	return (0);
 }
 
@@ -40,7 +59,6 @@ int	draw_map(t_data *data)
 {
 	int			i;
 	int			j;
-	static int	counter;
 
 	i = 0;
 	while ((data->var.map)[i])
@@ -59,8 +77,6 @@ int	draw_map(t_data *data)
 		}
 		i++;
 	}
-	counter++;
-	ft_putnbr(counter);
-	ft_putstr("\n");
+	string(data);
 	return (0);
 }

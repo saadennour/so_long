@@ -6,11 +6,13 @@
 /*   By: sfarhan <sfarhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 21:00:47 by sfarhan           #+#    #+#             */
-/*   Updated: 2022/02/27 00:20:18 by sfarhan          ###   ########.fr       */
+/*   Updated: 2022/02/26 02:12:47 by sfarhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include "get_next_line.h"
+#include <fcntl.h>
 
 static int	buno(char *s)
 {

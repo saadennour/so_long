@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   tools_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfarhan <sfarhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 23:39:49 by sfarhan           #+#    #+#             */
-/*   Updated: 2022/02/27 00:20:22 by sfarhan          ###   ########.fr       */
+/*   Updated: 2022/02/27 03:18:58 by sfarhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <fcntl.h>
 
 void	ft_win(t_data *data, int i, int j)
 {
@@ -67,7 +68,8 @@ int	strange(char **s)
 		while (s[i][j] != '\0')
 		{
 			if (s[i][j] != '1' && s[i][j] != '0' && s[i][j] != 'C'
-				&& s[i][j] != 'E' && s[i][j] != 'P' && s[i][j] != '\n')
+				&& s[i][j] != 'E' && s[i][j] != 'P' && s[i][j] != '\n'
+				&& s[i][j] != 'H')
 				return (0);
 			j++;
 		}
@@ -95,4 +97,6 @@ void	gold_hunt(t_data *data)
 		(data->var.mlx, "./pics/gold.xpm", &w, &h);
 	data->relative_boat = mlx_xpm_file_to_image
 		(data->var.mlx, "./pics/boat2.xpm", &w, &h);
+	data->relative_monster = mlx_xpm_file_to_image
+		(data->var.mlx, "./pics/spike.xpm", &w, &h);
 }

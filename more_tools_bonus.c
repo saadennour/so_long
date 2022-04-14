@@ -6,11 +6,58 @@
 /*   By: sfarhan <sfarhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 02:35:25 by sfarhan           #+#    #+#             */
-/*   Updated: 2022/02/26 20:54:37 by sfarhan          ###   ########.fr       */
+/*   Updated: 2022/02/26 01:58:13 by sfarhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static int	count(long int n)
+{
+	int	count;
+
+	count = 0;
+	if (n < 0)
+	{
+		n = n * -1;
+		count++;
+	}
+	while (n > 0)
+	{
+		n = n / 10;
+		count++;
+	}
+	return (count);
+}
+
+char	*ft_itoa(int n)
+{
+	int			i;
+	char		*str;
+	long		nb;
+
+	if (n == 0)
+		return (ft_strdup("0"));
+	i = count(n);
+	str = (char *) malloc(sizeof(char) * (i + 1));
+	if (!(str))
+		return (0);
+	str[i] = '\0';
+	i--;
+	nb = n;
+	if (nb < 0)
+	{
+		str[0] = '-';
+		nb *= -1;
+	}
+	while (nb > 0)
+	{
+		str[i] = '0' + (nb % 10);
+		nb = nb / 10;
+		i--;
+	}
+	return (str);
+}
 
 int	ft_lines(char **s)
 {
@@ -32,34 +79,6 @@ int	ft_lenght(char **s)
 	while (s[i][j] != '\n')
 		j++;
 	return (j);
-}
-
-static int	ft_putchar(int c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-void	ft_putnbr(int nb)
-{
-	unsigned int	a;
-
-	if (nb < 0)
-	{
-		write (1, "-", 1);
-		nb *= -1;
-	}
-	a = nb;
-	if (a > 9)
-	{
-		ft_putnbr(a / 10);
-		ft_putnbr(a % 10);
-	}
-	else
-	{
-		a += '0';
-		ft_putchar(a);
-	}
 }
 
 int	ft_putstr(char *str)

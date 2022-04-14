@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_helpers.c                                     :+:      :+:    :+:   */
+/*   move_helpers_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfarhan <sfarhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 23:58:38 by sfarhan           #+#    #+#             */
-/*   Updated: 2022/02/26 23:48:52 by sfarhan          ###   ########.fr       */
+/*   Updated: 2022/02/27 01:25:42 by sfarhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ int	up_help(t_data *data, int i, int j, int collect)
 	if ((data->var.map)[i][j] == 'P'
 		&& (data->var.map)[i - 1][j] == 'C')
 			(data->var.map)[i - 1][j] = '0';
+	else if ((data->var.map)[i][j] == 'P'
+			&& (data->var.map)[i - 1][j] == 'H')
+	{
+		ft_putstr ("D3IIIIF\n");
+		exit (0);
+	}
 	else if ((data->var.map)[i][j] == 'P'
 			&& (data->var.map)[i - 1][j] == 'E')
 	{
@@ -33,6 +39,12 @@ int	down_help(t_data *data, int i, int j, int collect)
 		&& (data->var.map)[i + 1][j] == 'C')
 			(data->var.map)[i + 1][j] = '0';
 	else if ((data->var.map)[i][j] == 'P'
+			&& (data->var.map)[i + 1][j] == 'H')
+	{
+		ft_putstr ("D3IIIIF\n");
+		exit (0);
+	}
+	else if ((data->var.map)[i][j] == 'P'
 			&& (data->var.map)[i + 1][j] == 'E')
 	{
 		if (collect == 0)
@@ -47,6 +59,12 @@ int	right_help(t_data *data, int i, int j, int collect)
 	if ((data->var.map)[i][j] == 'P'
 		&& (data->var.map)[i][j + 1] == 'C')
 			(data->var.map)[i][j + 1] = '0';
+	else if ((data->var.map)[i][j] == 'P'
+			&& (data->var.map)[i][j + 1] == 'H')
+	{
+		ft_putstr ("D3IIIIF\n");
+		exit (0);
+	}
 	else if ((data->var.map)[i][j] == 'P'
 			&& (data->var.map)[i][j + 1] == 'E')
 	{
@@ -68,6 +86,12 @@ int	left_help(t_data *data, int i, int j, int collect)
 		if (collect == 0)
 			ft_win(data, i, j);
 		return (1);
+	}
+	else if ((data->var.map)[i][j] == 'P'
+			&& (data->var.map)[i][j - 1] == 'H')
+	{
+		ft_putstr ("D3IIIIF\n");
+		exit (0);
 	}
 	return (0);
 }

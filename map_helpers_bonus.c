@@ -6,11 +6,12 @@
 /*   By: sfarhan <sfarhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 23:41:34 by sfarhan           #+#    #+#             */
-/*   Updated: 2022/02/27 00:20:38 by sfarhan          ###   ########.fr       */
+/*   Updated: 2022/02/23 01:45:50 by sfarhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <fcntl.h>
 
 int	uno(char *s)
 {

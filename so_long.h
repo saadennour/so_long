@@ -6,7 +6,7 @@
 /*   By: sfarhan <sfarhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 21:00:24 by sfarhan           #+#    #+#             */
-/*   Updated: 2022/02/25 21:45:10 by sfarhan          ###   ########.fr       */
+/*   Updated: 2022/02/27 00:20:12 by sfarhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <fcntl.h>
 # include  <mlx.h>
 # include "get_next_line.h"
 
@@ -47,6 +48,8 @@ typedef struct t_player {
 typedef struct t_data {
 	t_vars		var;
 	t_player	player;
+	int			w;
+	int			h;
 	void		*relative_back;
 	void		*relative_sand;
 	void		*relative_gold;
@@ -79,4 +82,5 @@ int		ft_lenght(char **s);
 int		ft_lines(char **s);
 void	gold_hunt(t_data *data);
 int		ft_putstr(char *str);
+void	ft_putnbr(int nb);
 #endif

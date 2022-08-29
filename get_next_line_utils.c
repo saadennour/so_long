@@ -6,7 +6,7 @@
 /*   By: sfarhan <sfarhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 18:37:27 by sfarhan           #+#    #+#             */
-/*   Updated: 2022/02/23 02:34:51 by sfarhan          ###   ########.fr       */
+/*   Updated: 2022/08/29 03:53:59 by sfarhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,13 @@ char	*ft_strjoin(char *s1, char *s2)
 		}
 	}
 	j = 0;
-	while (s2[j])
+	if (s2)
 	{
-		ret[i] = s2[j++];
-		i++;
+		while (s2[j])
+		{
+			ret[i] = s2[j++];
+			i++;
+		}
 	}
 	ret[i] = '\0';
 	free (s1);

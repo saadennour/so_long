@@ -14,9 +14,9 @@ BMAP = map_helpers_bonus.c draw_bonus.c \
 
 GNL = get_next_line.c get_next_line_utils.c \
 
-TOOLS = tools.c more_tools.c \
+TOOLS = tools.c more_tools.c ft_splito.c\
 
-BTOOLS = tools_bonus.c more_tools_bonus.c \
+BTOOLS = tools_bonus.c more_tools_bonus.c ft_splito.c\
 
 MAIN = so_long.c \
 

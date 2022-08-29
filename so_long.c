@@ -6,7 +6,7 @@
 /*   By: sfarhan <sfarhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 21:00:47 by sfarhan           #+#    #+#             */
-/*   Updated: 2022/02/27 00:20:18 by sfarhan          ###   ########.fr       */
+/*   Updated: 2022/08/29 03:59:32 by sfarhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,29 +30,27 @@ static int	buno(char *s)
 	return (count);
 }
 
-char	**size(int fd, int lenght)
+char	**size(int fd)
 {
 	int		i;
 	char	**s;
 	char	*ob;
+	char	*line;
 
 	i = 0;
-	ob = get_next_line(fd, 13);
-	if (ob == NULL)
+	ob = NULL;
+	line = get_next_line(fd, 10000000);
+	if (line == NULL)
 	{
 		ft_putstr("Error\n");
 		exit (0);
 	}
-	lenght = ft_strlen (ob);
-	s = malloc(sizeof(char *) * lenght);
-	s[0] = ob;
-	while (s[i])
+	while (line != NULL)
 	{
-		s[i][lenght] = '\0';
-		i++;
-		s[i] = get_next_line(fd, 13);
+		ob = ft_strjoin(ob, line);
+		line = get_next_line(fd, 1);
 	}
-	s[i] = 0;
+	s = ft_splito(ob, '\n');
 	return (s);
 }
 
@@ -93,7 +91,7 @@ int	init_vars(t_data *data, char *mapname)
 	data->var.line = 0;
 	data->var.x = 80;
 	data->var.y = 80;
-	data->var.map = size(fd, data->var.lenght);
+	data->var.map = size(fd);
 	data->var.line = ft_lines(data->var.map);
 	data->var.lenght = ft_lenght(data->var.map);
 	if (check_map(data->var.map, data->var.line, data->var.lenght) == 0)

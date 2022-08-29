@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_helpers.c                                      :+:      :+:    :+:   */
+/*   map_helpers_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sfarhan <sfarhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 23:41:34 by sfarhan           #+#    #+#             */
-/*   Updated: 2022/02/23 01:45:50 by sfarhan          ###   ########.fr       */
+/*   Updated: 2022/08/29 03:56:11 by sfarhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	uno(char *s)
 
 	i = 0;
 	count = 0;
-	while (s[i] != '\n')
+	while (s[i])
 	{
 		if (s[i] == '1')
 			count++;
@@ -45,7 +45,7 @@ int	player(char *s)
 
 	i = 0;
 	p = 0;
-	while (s[i] != '\n')
+	while (s[i])
 	{
 		if (s[i] == 'P')
 			p++;
@@ -61,7 +61,7 @@ int	collectible(char *s)
 
 	i = 0;
 	c = 0;
-	while (s[i] != '\n')
+	while (s[i])
 	{
 		if (s[i] == 'C')
 			c++;
@@ -77,7 +77,7 @@ int	out(char *s)
 
 	i = 0;
 	e = 0;
-	while (s[i] != '\n')
+	while (s[i])
 	{
 		if (s[i] == 'E')
 			e++;

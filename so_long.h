@@ -6,7 +6,7 @@
 /*   By: sfarhan <sfarhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 21:00:24 by sfarhan           #+#    #+#             */
-/*   Updated: 2022/02/27 00:20:12 by sfarhan          ###   ########.fr       */
+/*   Updated: 2022/08/29 03:59:35 by sfarhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ typedef struct t_data {
 }				t_data;
 
 int		counter(t_data *data);
-char	**ft_split(char const *s, char c);
+char	**ft_splito(char const *s, char c);
 int		check_map(char **s, int line, int lenght);
-char	**size(int fd, int lenght);
+char	**size(int fd);
 int		draw_map(t_data *data);
 int		init_vars(t_data *data, char *mapname);
 int		key_hook(int keycode, t_data *data);

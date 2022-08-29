@@ -6,7 +6,7 @@
 /*   By: sfarhan <sfarhan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 23:41:34 by sfarhan           #+#    #+#             */
-/*   Updated: 2022/02/27 00:20:38 by sfarhan          ###   ########.fr       */
+/*   Updated: 2022/08/29 03:56:21 by sfarhan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	uno(char *s)
 
 	i = 0;
 	count = 0;
-	while (s[i] != '\n')
+	while (s[i])
 	{
 		if (s[i] == '1')
 			count++;
@@ -44,7 +44,7 @@ int	player(char *s)
 
 	i = 0;
 	p = 0;
-	while (s[i] != '\n')
+	while (s[i])
 	{
 		if (s[i] == 'P')
 			p++;
@@ -60,7 +60,7 @@ int	collectible(char *s)
 
 	i = 0;
 	c = 0;
-	while (s[i] != '\n')
+	while (s[i])
 	{
 		if (s[i] == 'C')
 			c++;
@@ -76,7 +76,7 @@ int	out(char *s)
 
 	i = 0;
 	e = 0;
-	while (s[i] != '\n')
+	while (s[i])
 	{
 		if (s[i] == 'E')
 			e++;
